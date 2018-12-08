@@ -4,7 +4,12 @@ class ResultsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(child: Text('results screen')),
+      margin: EdgeInsets.only(bottom: 50),
+      child: Card(
+        color: Colors.white,
+        elevation: 2,
+        child: Center(child: Text("details page")),
+      ),
     );
   }
 }
