@@ -9,11 +9,16 @@ import './pages/nighttime.dart';
 import './pages/nadirs.dart';
 import './pages/results.dart';
 
-class WizardPage extends StatelessWidget {
-  // GlobalKey<Swiper> _swiperKey = new GlobalKey();
+class WizardPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new _WizardPageState();
+  }
+}
 
+class _WizardPageState extends State {
   Widget _pageBuilder(int index) {
-    Widget page = null;
+    Widget page;
     switch (index) {
       case 0:
         page = new DetailsPage();
@@ -37,6 +42,50 @@ class WizardPage extends StatelessWidget {
     return page;
   }
 
+  SwiperController _controller;
+
+  int _currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = new SwiperController();
+    _currentIndex = 0;
+  }
+
+  Widget buildSwiper() {
+    return Swiper(
+        // key: _swiperKey,
+        loop: false,
+        itemBuilder: (BuildContext context, int index) {
+          return _pageBuilder(index);
+        },
+        itemCount: 6,
+        viewportFraction: 1,
+        scale: 0.5,
+        controller: _controller,
+        indicatorLayout: PageIndicatorLayout.SCALE,
+        pagination: new SwiperPagination(
+          margin: EdgeInsets.only(bottom: 20),
+          builder: const DotSwiperPaginationBuilder(
+            size: 20.0,
+            activeSize: 20.0,
+            space: 20.0,
+            color: Colors.white30,
+            activeColor: Colors.white,
+          ),
+        ),
+        onIndexChanged: (int index) {
+          if (index == 2 && _currentIndex == 1) {
+            // _controller.previous(animation: true);
+            _controller.move(_currentIndex);
+          } else {
+            _currentIndex = index;
+          }
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +93,7 @@ class WizardPage extends StatelessWidget {
         title: Text('WIZARD'),
         elevation: 0,
         backgroundColor: Colors.indigo[800],
+        centerTitle: true,
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -70,38 +120,7 @@ class WizardPage extends StatelessWidget {
               child: Center(
                 child: Container(
                   padding: EdgeInsets.all(10),
-                  child: Swiper(
-                      // key: _swiperKey,
-                      loop: false,
-                      itemBuilder: (BuildContext context, int index) {
-                        return _pageBuilder(index);
-                        // return new Image.network(
-                        //   "http://via.placeholder.com/350x150",
-                        //   fit: BoxFit.fill,
-                        // );
-                      },
-                      itemCount: 6,
-                      viewportFraction: 1,
-                      scale: 0.5,
-                      // pagination: new SwiperPagination(),
-                      indicatorLayout: PageIndicatorLayout.SCALE,
-                      // control: new SwiperControl(),
-                      pagination: new SwiperPagination(
-                        margin: EdgeInsets.only(bottom: 20),
-                        builder: const DotSwiperPaginationBuilder(
-                          size: 20.0,
-                          activeSize: 20.0,
-                          space: 20.0,
-                          color: Colors.white30,
-                          activeColor: Colors.white,
-                        ),
-                      ),
-                      onIndexChanged: (int index) {
-                        print(index);
-                        if (index == 2) {
-                          // _swiperKey.currentState.previous();
-                        }
-                      }),
+                  child: buildSwiper(),
                 ),
               ),
             ),
@@ -116,13 +135,20 @@ class WizardPage extends StatelessWidget {
                       RaisedButton(
                         child: Text('Back'),
                         onPressed: () {
-                          // TODO: this should only happen when we are in the first slide, otherwise I should navigate to the previous slide
-                          Navigator.pop(context);
+                          if (_currentIndex == 0) {
+                            Navigator.pop(context);
+                          } else {
+                            _controller.previous(animation: true);
+                          }
                         },
                       ),
                       RaisedButton(
                         child: Text('Next'),
-                        onPressed: () {},
+                        onPressed: () {
+                          if (_currentIndex < 5) {
+                            _controller.next(animation: true);
+                          }
+                        },
                       ),
                     ],
                   ),
