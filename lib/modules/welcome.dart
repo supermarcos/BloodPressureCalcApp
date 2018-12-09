@@ -41,7 +41,7 @@ class WelcomePage extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       Text(
-                        'Blood Pressure Calculator',
+                        'Blood Pressure Calculator And Interpretaton',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,

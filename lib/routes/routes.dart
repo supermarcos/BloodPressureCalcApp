@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:bloodpressurecalc/modules/welcome.dart';
+import 'package:BPCalculator/modules/welcome.dart';
+import 'package:BPCalculator/modules/settings/about.dart';
+import 'package:BPCalculator/modules/settings/settings.dart';
+import 'package:BPCalculator/modules/settings/feedback.dart';
 
-import 'package:bloodpressurecalc/modules/settings/about.dart';
-import 'package:bloodpressurecalc/modules/settings/settings.dart';
-import 'package:bloodpressurecalc/modules/settings/feedback.dart';
-
-import 'package:bloodpressurecalc/modules/wizard/wizardpage.dart';
+import 'package:BPCalculator/modules/wizard/wizardpage.dart';
 
 Map<String, WidgetBuilder> routesBuilder(BuildContext context) {
   final Map<String, WidgetBuilder> routes = {
