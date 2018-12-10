@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DayTimePage extends StatelessWidget {
+class diastolicPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -8,7 +8,7 @@ class DayTimePage extends StatelessWidget {
       child: Card(
         color: Colors.white,
         elevation: 2,
-        child: Center(child: Text("details page")),
+        child: Center(child: Text("diastolic")),
       ),
     );
   }

@@ -31,6 +31,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       // debugShowMaterialGrid: true, // displays a grid overlaying the application
       // home: AuthPage(),
+      theme: new ThemeData(
+        primarySwatch: Colors.indigo,
+      ),
       routes: routesBuilder(context),
       onUnknownRoute: (RouteSettings settings) {
         return MaterialPageRoute(

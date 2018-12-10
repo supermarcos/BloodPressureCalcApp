@@ -13,6 +13,16 @@ class WelcomePage extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.indigo[800],
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.info_outline),
+            color: Colors.white,
+            onPressed: () {
+              // TODO: take the user to a help, about, bibliography and info page
+              Navigator.pushNamed(context, '/about');
+            },
+          ),
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(

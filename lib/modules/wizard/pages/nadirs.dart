@@ -8,7 +8,7 @@ class NadirsPage extends StatelessWidget {
       child: Card(
         color: Colors.white,
         elevation: 2,
-        child: Center(child: Text("details page")),
+        child: Center(child: Text("nadirs")),
       ),
     );
   }

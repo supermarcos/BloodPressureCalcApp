@@ -8,7 +8,20 @@ class MeasurementsPage extends StatelessWidget {
       child: Card(
         color: Colors.white,
         elevation: 2,
-        child: Center(child: Text("details page")),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Center(
+              child: Text(
+                "Please, enter measurements",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 30),
+            ),
+          ],
+        ),
       ),
     );
   }

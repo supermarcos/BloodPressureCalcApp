@@ -4,8 +4,8 @@ import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 
 import './pages/details.dart';
 import './pages/measurements.dart';
-import './pages/daytime.dart';
-import './pages/nighttime.dart';
+import './pages/systolic.dart';
+import './pages/diastolic.dart';
 import './pages/nadirs.dart';
 import './pages/results.dart';
 
@@ -16,7 +16,7 @@ class WizardPage extends StatefulWidget {
   }
 }
 
-class _WizardPageState extends State {
+class _WizardPageState extends State<WizardPage> {
   Widget _pageBuilder(int index) {
     Widget page;
     switch (index) {
@@ -27,16 +27,13 @@ class _WizardPageState extends State {
         page = new MeasurementsPage();
         break;
       case 2:
-        page = new DayTimePage();
+        page = new systolicPage();
         break;
       case 3:
-        page = new NightTimePage();
+        page = new diastolicPage();
         break;
       case 4:
         page = new NadirsPage();
-        break;
-      case 5:
-        page = new ResultsPage();
         break;
     }
     return page;
@@ -61,7 +58,7 @@ class _WizardPageState extends State {
         itemBuilder: (BuildContext context, int index) {
           return _pageBuilder(index);
         },
-        itemCount: 6,
+        itemCount: 5,
         viewportFraction: 1,
         scale: 0.5,
         controller: _controller,
@@ -79,7 +76,7 @@ class _WizardPageState extends State {
         onIndexChanged: (int index) {
           if (index == 2 && _currentIndex == 1) {
             // _controller.previous(animation: true);
-            _controller.move(_currentIndex);
+            // _controller.move(_currentIndex);
           } else {
             _currentIndex = index;
           }
@@ -133,7 +130,32 @@ class _WizardPageState extends State {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       RaisedButton(
-                        child: Text('Back'),
+                        elevation: 5,
+                        color: Colors.indigo[800],
+                        textColor: Colors.white,
+                        padding: EdgeInsets.all(15),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Icon(
+                              Icons.chevron_left,
+                              color: Colors.white,
+                              size: 25,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 5),
+                            ),
+                            Text(
+                              'Back',
+                              style: TextStyle(fontSize: 15),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                            ),
+                          ],
+                        ),
                         onPressed: () {
                           if (_currentIndex == 0) {
                             Navigator.pop(context);
@@ -143,10 +165,42 @@ class _WizardPageState extends State {
                         },
                       ),
                       RaisedButton(
-                        child: Text('Next'),
+                        elevation: 5,
+                        color: Colors.indigo[800],
+                        textColor: Colors.white,
+                        padding: EdgeInsets.all(15),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                            ),
+                            Text(
+                              'Next',
+                              style: TextStyle(fontSize: 15),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 5),
+                            ),
+                            Icon(
+                              Icons.chevron_right,
+                              color: Colors.white,
+                              size: 25,
+                            ),
+                          ],
+                        ),
                         onPressed: () {
-                          if (_currentIndex < 5) {
+                          if (_currentIndex < 4) {
                             _controller.next(animation: true);
+                          } else if (_currentIndex == 4) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ResultsPage(123),
+                              ),
+                            );
                           }
                         },
                       ),

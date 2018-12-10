@@ -3,8 +3,34 @@ import 'package:flutter/material.dart';
 class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('settings page'),
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: Text('SETTINGS'),
+        centerTitle: true,
+        backgroundColor: Colors.indigo[800],
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            stops: [0.1, 0.5, 0.7, 0.9],
+            colors: [
+              Colors.indigo[800],
+              Colors.indigo[700],
+              Colors.indigo[600],
+              Colors.indigo[400],
+            ],
+          ),
+        ),
+        child: ListView(
+          padding: EdgeInsets.all(15.0),
+          children: <Widget>[
+            Center(child: Text('settings screen')),
+          ],
+        ),
+      ),
     );
   }
 }
