@@ -29,8 +29,11 @@ class _DetailsPageState extends State<DetailsPage> {
         color: Colors.white,
         elevation: 2,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(top: 30),
+            ),
             Center(
               child: Text(
                 "Please, select an age",
@@ -40,12 +43,22 @@ class _DetailsPageState extends State<DetailsPage> {
             Padding(
               padding: EdgeInsets.only(top: 30),
             ),
-            Center(
-              child: NumberPicker.integer(
-                initialValue: _currentAge,
-                minValue: 18,
-                maxValue: 100,
-                onChanged: (newValue) => setState(() => _currentAge = newValue),
+            Flexible(
+              child: Center(
+                child: NumberPicker.integer(
+                  initialValue: _currentAge,
+                  minValue: 18,
+                  listViewWidth: 200,
+                  maxValue: 100,
+                  onChanged: (newValue) =>
+                      setState(() => _currentAge = newValue),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: EdgeInsets.all(0),
               ),
             ),
           ],

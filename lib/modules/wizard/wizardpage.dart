@@ -21,16 +21,17 @@ class _WizardPageState extends State<WizardPage> {
     Widget page;
     switch (index) {
       case 0:
+        FocusScope.of(context).requestFocus(new FocusNode());
         page = new DetailsPage();
         break;
       case 1:
         page = new MeasurementsPage();
         break;
       case 2:
-        page = new systolicPage();
+        page = new SystolicPage();
         break;
       case 3:
-        page = new diastolicPage();
+        page = new DiastolicPage();
         break;
       case 4:
         page = new NadirsPage();
@@ -66,9 +67,9 @@ class _WizardPageState extends State<WizardPage> {
         pagination: new SwiperPagination(
           margin: EdgeInsets.only(bottom: 20),
           builder: const DotSwiperPaginationBuilder(
-            size: 20.0,
-            activeSize: 20.0,
-            space: 20.0,
+            size: 15.0,
+            activeSize: 15.0,
+            space: 15.0,
             color: Colors.white30,
             activeColor: Colors.white,
           ),
@@ -113,7 +114,7 @@ class _WizardPageState extends State<WizardPage> {
         child: Column(
           children: <Widget>[
             Expanded(
-              flex: 4,
+              flex: 5,
               child: Center(
                 child: Container(
                   padding: EdgeInsets.all(10),

@@ -48,7 +48,7 @@ class WelcomePage extends StatelessWidget {
               flex: 3,
               child: Center(
                 child: Container(
-                  child: Column(
+                  child: ListView(
                     children: <Widget>[
                       Text(
                         'Blood Pressure Calculator And Interpretaton',
@@ -79,7 +79,7 @@ class WelcomePage extends StatelessWidget {
               ),
             ),
             Expanded(
-              flex: 2,
+              flex: 1,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
@@ -87,7 +87,7 @@ class WelcomePage extends StatelessWidget {
                     elevation: 5,
                     color: Colors.indigo[800],
                     textColor: Colors.white,
-                    padding: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(15),
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(50.0)),
                     child: Row(
@@ -95,14 +95,14 @@ class WelcomePage extends StatelessWidget {
                         Icon(
                           Icons.add,
                           color: Colors.white,
-                          size: 40,
+                          size: 36,
                         ),
                         Padding(
                           padding: EdgeInsets.only(left: 10),
                         ),
                         Text(
                           'New Interpretation',
-                          style: TextStyle(fontSize: 18),
+                          style: TextStyle(fontSize: 16),
                         ),
                         Padding(
                           padding: EdgeInsets.only(left: 10),
